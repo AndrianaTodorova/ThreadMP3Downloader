@@ -32,7 +32,7 @@ namespace DownloadMP3
             string fileName = reg.Match(uri).Groups[1].Value.Replace("%20", " ");
             var task = Task.Run(() => this.DownloadMP3(uri));
             var awaiter = task.GetAwaiter();
-            //Wneh a task is completed gets the result of it and then writes its content with a fileName specified
+            //When a task is completed gets the result of it and then writes its content with a fileName specified
             awaiter.OnCompleted(() => this.WriteDataToFile(fileName, awaiter.GetResult()));
             this.ProccessedTasks.Add(fileName, task);
         }
